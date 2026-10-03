@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Dashboard</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:25px;color:#1e293b}
+.container{max-width:1100px;margin:auto}
+h1,h2{color:#173b70}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:25px 0}
+.card{background:white;border-radius:12px;padding:24px;box-shadow:0 3px 12px #0000000d}
+.card p{color:#64748b;margin:0 0 12px}
+.number{font-size:32px;font-weight:bold;color:#173b70}
+.percentage{color:#15803d}
+table{width:100%;border-collapse:collapse;background:white;margin-top:15px}
+th,td{padding:13px;border:1px solid #dbe2ea;text-align:left}
+th{background:#173b70;color:white}
+tr:nth-child(even){background:#f8fafc}
+.btn{display:inline-block;background:#173b70;color:white;padding:11px 16px;text-decoration:none;border-radius:6px;margin:20px 8px 0 0}
+.table-wrapper{overflow-x:auto}
+@media(max-width:650px){body{padding:10px}table{min-width:600px}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Attendance Dashboard</h1>
+<p>Overview of saved exam attendance records.</p>
+
+<div class="cards">
+<div class="card"><p>Total Attendance Records</p><div class="number">{{ total_marked }}</div></div>
+<div class="card"><p>Present Students</p><div class="number">{{ present_count }}</div></div>
+<div class="card"><p>Absent Students</p><div class="number">{{ absent_count }}</div></div>
+<div class="card"><p>Attendance Percentage</p><div class="number percentage">{{ percentage }}%</div></div>
+</div>
+
+<h2>Subject-wise Attendance</h2>
+
+{% if subject_stats %}
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>S.No.</th><th>Subject</th><th>Exam Date</th><th>Marked</th><th>Present</th><th>Absent</th><th>Percentage</th></tr>
+</thead>
+<tbody>
+{% for item in subject_stats %}
+{% set marked = item.total_marked or 0 %}
+{% set present = item.present_count or 0 %}
+<tr>
+<td>{{ loop.index }}</td>
+<td>{{ item.subject }}</td>
+<td>{{ item.exam_date }}</td>
+<td>{{ marked }}</td>
+<td>{{ present }}</td>
+<td>{{ item.absent_count or 0 }}</td>
+<td>{% if marked > 0 %}{{ ((present / marked) * 100)|round(2) }}%{% else %}Not marked{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% else %}
+<p>No exams available yet. Add an exam to get started.</p>
+{% endif %}
+
+<a class="btn" href="{{ url_for('index') }}">Back to Main Page</a>
+<a class="btn" href="{{ url_for('attendance') }}">Mark Attendance</a>
+</div>
+</body>
+</html>

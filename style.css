@@ -1,0 +1,94 @@
+
+body {
+    background: #f3f6fc;
+    color: #18243b;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-custom {
+    background: #14213d;
+    padding: 16px 0;
+}
+
+.hero {
+    padding: 32px;
+    border-radius: 16px;
+    color: white;
+    background: linear-gradient(120deg, #14213d, #3157a4);
+}
+
+.hero p:first-child {
+    color: #c7d7ff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-weight: 700;
+    margin: 12px 0;
+}
+
+.stat-card,
+.panel {
+    background: white;
+    border: 1px solid #e4eaf3;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 4px 18px rgba(20, 33, 61, 0.05);
+}
+
+.stat-card p {
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.stat-card h2 {
+    color: #2457c5;
+    font-weight: bold;
+}
+
+.panel h4 {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.panel label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-control,
+.form-select {
+    padding: 10px;
+    border-color: #dce3ef;
+}
+
+.btn {
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.table {
+    vertical-align: middle;
+}
+
+.table thead th {
+    background: #f3f6fc;
+    white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 22px;
+    }
+
+    .panel,
+    .stat-card {
+        padding: 16px;
+    }
+}
